@@ -1,0 +1,15 @@
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+.timer{
+  font-size: 150px;
+}
+.reset{
+  color: blue;
+  text-decoration: underline;
+}
