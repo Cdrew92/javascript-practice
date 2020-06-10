@@ -14,12 +14,14 @@
 
 <body>
   <div class="d-flex flex-column centered">
-    <div id="timer" class="timer">00:00</div>
+    <div id="timer" class="timer">
+      <span id="timeElapsed">00:00</span>
+    </div>
     <div class="flex flex-row">
       <button id="start" onclick="start()" class="btn btn-success my-4">Start</button>
-      <button id="stop" class="btn btn-danger my-4">Stop</button>
+      <button id="stop" onclick="end()" class="btn btn-danger my-4">Stop</button>
     <div>
-      <div id="reset" class="reset">Reset</div>
+      <div id="reset" onclick="reset()" class="reset">Reset</div>
   </div>
   <script src="/stopwatch/assets/js/scripts.js"></script>
 </body>
