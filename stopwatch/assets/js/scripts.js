@@ -9,8 +9,9 @@ let end = document.getElementById('end')
 let reset = document.getElementById('reset')
 
 let startTime = Date.now();
-let Elapsed = document.getElementById('timeElapsed')
+let elapsed = document.getElementById('timeElapsed')
 
+//Seconds calculation
 let seconds = setInterval( function(){
     // Set difference = difference between epoch time and current time, every second
     let difference = Date.now() - startTime;
@@ -19,15 +20,15 @@ let seconds = setInterval( function(){
     return secs;
     }, 1000);
 
-    
-let milliseconds = setInterval( function(){
+    //milliseconds calculation
+    setInterval( function millReturn(){
     let difference = Date.now() - startTime;
     let mill = (difference / 1000);
     let remainer = (mill % 1).toFixed(2);
-    var decPart = (remainer+"").split(".")[1];
+    decPart = (remainer+"").split(".")[1];
+    // console.log(decPart)
+    return decPart
     }, 10);
-
-console.log(decPart);
 
 let minutes = setInterval( function(){
     console.log("1 minute");
