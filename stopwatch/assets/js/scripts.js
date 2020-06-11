@@ -1,8 +1,6 @@
 //Requirements:
-// create stopwatch with 4 number time format 00:00
-// display seconds & milliseconds until 1 minute is reached
-// display minutes and seconds until 1 hour is reached
-// display hours and minutes until infinity
+// create stopwatch with 4 number time format h, m, s, mills
+// reset secs at 60 seconds, same with minutes
 
 let start = document.getElementById('start')
 let end = document.getElementById('end')
@@ -14,14 +12,8 @@ let minsElapsed = document.getElementById('minsElapsed')
 let secsElapsed = document.getElementById('secsElapsed')
 let millsElapsed = document.getElementById('millsElapsed')
 
-//Seconds calculation
-    let seconds = setInterval( function(){
-        // Set difference = difference between epoch time and current time, every second
-        let difference = Date.now() - startTime;
-        let secs = Math.floor(difference / 1000);
-        // console.log(secs);
-        secsElapsed.innerHTML = secs;
-    }, 1000);
+let secCalls = 0;
+let mins = 0;
 
     //milliseconds calculation
     let mills = setInterval( function(){
@@ -33,7 +25,22 @@ let millsElapsed = document.getElementById('millsElapsed')
         millsElapsed.innerHTML = decPart;
     }, 10);
 
-    let mins = setInterval( function(){
-        console.log("1 minute");
-        // min++
-    }, 60000);
+    //Seconds calculation
+    let seconds = setInterval( function(){
+        // Set difference = difference between epoch time and current time, every second
+        let difference = Date.now() - startTime;
+        let secs = Math.floor(difference / 1000);
+        while(secs >= 11) {
+         secs = secs - 11; 
+        }
+        // console.log(secs);
+        secsElapsed.innerHTML = secs;
+        secCalls++;
+        if(secCalls >= 10){
+            mins = mins +1;
+        }
+        minsElapsed.innerHTML = mins;
+    }, 1000);
+
+    //Minutes calculation
+    
