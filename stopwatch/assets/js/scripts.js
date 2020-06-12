@@ -9,7 +9,6 @@ let start = document.getElementById('start')
 let end = document.getElementById('end')
 let reset = document.getElementById('reset')
 
-let startTime = Date.now();
 let hoursElapsed = document.getElementById('hoursElapsed')
 let minsElapsed = document.getElementById('minsElapsed')
 let secsElapsed = document.getElementById('secsElapsed')
@@ -20,6 +19,8 @@ let minCalls = 0;
 let mins = 0;
 let hours = 0;
 
+start.onclick = function() {
+    let startTime = Date.now();
     //milliseconds calculation
     let mills = setInterval( function(){
         let difference = Date.now() - startTime;
@@ -58,5 +59,20 @@ let hours = 0;
 
     }, 1000);
 
-    //Minutes calculation
+    function stopAll() {
+        clearTimeout(mills);
+        clearTimeout(seconds);
+    }
+    end.onclick = function stopWatch() {
+        stopAll();
+      }
+
+      reset.onClick = function resetWatch() { //reset not working - maybe try declaring time variable globally so they can be accessed here.
+        stopAll();
+          decPart = decPart * 0;
+          secs = secs * 0;
+          mins = mins * 0;
+          hours = hours * 0;
+      }
+}
     
