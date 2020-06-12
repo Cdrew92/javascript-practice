@@ -70,9 +70,11 @@ start.onclick = function() {
 
     end.onclick = function stopWatch() {
         stopAll();
+        secCalls = secCalls - 1;
+        minCalls = minCalls - 1;
         }
 
-    reset.onclick = function resetWatch() { //reset not working - maybe try declaring time variable globally so they can be accessed here.
+    reset.onclick = function resetWatch() { 
         stopAll();
         decPart = decPart * 0;
         secs = secs * 0;
