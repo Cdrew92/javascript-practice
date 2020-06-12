@@ -14,12 +14,16 @@ let minsElapsed = document.getElementById('minsElapsed')
 let secsElapsed = document.getElementById('secsElapsed')
 let millsElapsed = document.getElementById('millsElapsed')
 
+let running = 0;
 let secCalls = 0;
 let minCalls = 0;
+let decPart = 0;
+let secs = 0;
 let mins = 0;
 let hours = 0;
 
 start.onclick = function() {
+    running = 1;
     let startTime = Date.now();
     //milliseconds calculation
     let mills = setInterval( function(){
@@ -36,7 +40,7 @@ start.onclick = function() {
         // Set difference = difference between epoch time and current time, every second
         let difference = Date.now() - startTime;
         //calculate seconds
-        let secs = Math.floor(difference / 1000);
+        secs = Math.floor(difference / 1000);
         while(secs >= 11) { //set to 60 for production - when seconds reach xx or greater, then reset back to zero for a new minute - set at 11 for quick testing
          secs = secs - 11; //set to 60 for production
         }
@@ -63,16 +67,21 @@ start.onclick = function() {
         clearTimeout(mills);
         clearTimeout(seconds);
     }
+
     end.onclick = function stopWatch() {
         stopAll();
-      }
+        }
 
-      reset.onClick = function resetWatch() { //reset not working - maybe try declaring time variable globally so they can be accessed here.
+    reset.onclick = function resetWatch() { //reset not working - maybe try declaring time variable globally so they can be accessed here.
         stopAll();
-          decPart = decPart * 0;
-          secs = secs * 0;
-          mins = mins * 0;
-          hours = hours * 0;
-      }
+        decPart = decPart * 0;
+        secs = secs * 0;
+        mins = mins * 0;
+        hours = hours * 0;
+        millsElapsed.innerHTML = decPart;
+        secsElapsed.innerHTML = secs;
+        minsElapsed.innerHTML = mins;
+        hoursElapsed.innerHTML = hours;
+    }
 }
     
