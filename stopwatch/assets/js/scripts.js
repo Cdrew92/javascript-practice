@@ -23,7 +23,6 @@ let mins = 0;
 let hours = 0;
 
 start.onclick = function() {
-    running = 1;
     let startTime = Date.now();
     //milliseconds calculation
     let mills = setInterval( function(){
@@ -34,6 +33,8 @@ start.onclick = function() {
         // console.log(decPart)
         millsElapsed.innerHTML = decPart;
     }, 10);
+    
+    start.disabled = true; //disable start button so it cannot be spammed
 
     //Seconds calculation
     let seconds = setInterval( function(){
@@ -66,6 +67,7 @@ start.onclick = function() {
     function stopAll() {
         clearTimeout(mills);
         clearTimeout(seconds);
+        start.disabled = false; //re-enable start button once either restart or stop is clicked
     }
 
     end.onclick = function stopWatch() {
