@@ -6,3 +6,11 @@
     text-align: center;
     min-height: 100vh;
   }
+
+  .accordion {
+    width: 100%;
+  }
+
+  .collapseBody {
+    overflow: hidden;
+  }
