@@ -19,3 +19,18 @@ window.onresize = function(){
     // heightIncrement = height / 100;
     // console.log(height);
 };
+
+window.onscroll = function getYOffset() {
+    yOffset = window.pageYOffset;
+    contentOffset = height - yOffset;
+    // console.log(yOffsetIncrement);
+
+    progressCalc = ((yOffset - 16)/ (height - screenHeight)) * 100;
+    if (progressCalc <= 100) {
+        scrollBar.style.width = progressCalc +"%"
+    } else {
+        scrollBar.style.width = "100%"
+    }
+    console.log(progressCalc);
+    // scrollBar.style.width = progressCalc
+}
