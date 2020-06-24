@@ -25,7 +25,7 @@ window.onscroll = function getYOffset() {
     contentOffset = height - yOffset;
     // console.log(yOffsetIncrement);
 
-    progressCalc = ((yOffset - 16)/ (height - screenHeight)) * 100;
+    progressCalc = (yOffset / ((height + 16)- screenHeight)) * 100;
     if (progressCalc <= 100) {
         scrollBar.style.width = progressCalc +"%"
     } else {
