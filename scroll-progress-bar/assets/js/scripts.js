@@ -16,6 +16,8 @@ window.onresize = function(){
     widthIncrement = width / 100;
     // console.log(width);
     height = content.offsetHeight;
+    yOffset = window.pageYOffset;
+    screenHeight = window.screen.height;
     // heightIncrement = height / 100;
     // console.log(height);
 };
