@@ -4,9 +4,16 @@
     width: 1%;
     background: rgba(0, 151, 19, 0.6);
     border-radius: 5px;
-    top: 0;
     overflow: hidden;
     position: fixed;
+}
+
+#readTime {
+    display: block;
+    overflow: hidden;
+    position: fixed;
+    opacity: 0.4;
+    color: green;
 }
 
 .content {
