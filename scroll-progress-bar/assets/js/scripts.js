@@ -1,27 +1,30 @@
-//requirements: Create scrollbar that moves horizontailly across the screen and reaches 100% width once the user has scrolled to the bottm of the page content
-//Goal: calculate estimated read time based on 130wpm by counting number of words in content div and printing to DOM
 const scrollBar = document.getElementById('scrollBar');
 const content = document.querySelector(".content");
+let readTimeLabel = document.querySelector('#readTime');
 
-let height = content.offsetHeight;
+let contentHeight = content.offsetHeight;
 let screenHeight = window.screen.height;
 
-let progressCalc;
-let contentOffset;
+let wordsInContent = content.innerText;
+let wordCount = wordsInContent.match(/(\w+)/g).length; //Regex - \w+ (matches all characters in a word and pushes to wordCount array) - g (greedy. continues applying \w+ until all words are pushed to wordCount array)
+let minutesOfReading = parseInt(wordCount / 130);
+if (minutesOfReading <= 1) {
+readTimeLabel.innerHTML += minutesOfReading + ' Minute' ;
+} else {
+    readTimeLabel.innerHTML += minutesOfReading + ' Minutes';
+}
 
 window.onresize = function(){
-    width = window.screen.width;
-    widthIncrement = width / 100;
-    height = content.offsetHeight;
-    yOffset = window.pageYOffset;
+    contentHeight = content.offsetHeight;
     screenHeight = window.screen.height;
 };
 
 window.onscroll = function getYOffset() {
-    yOffset = window.pageYOffset;
-    contentOffset = height - yOffset;
+    let scrollOffsetPx = window.pageYOffset;
+    let progressCalc = (scrollOffsetPx / (contentHeight - screenHeight)) * 100;
+
     scrollBar.style.minWidth = "1%";
-    progressCalc = (yOffset / ((height + 16) - screenHeight)) * 100;
+    
     if (progressCalc <= 100) {
         scrollBar.style.width = progressCalc +"%"
     } else {
