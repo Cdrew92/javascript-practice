@@ -11,7 +11,7 @@ let minutesOfReading = parseInt(wordCount / 130);
 readTimeLabel.innerHTML = "Read Time: " + minutesOfReading + " Minutes"; //sets value on page load
 
 window.onresize = function(){
-    contentHeight = content.offsetHeight;
+    contentHeight = content.offsetHeight; //offsetHeight includes height of element including padding/borders. #Footer does not need to be included in calculations because #content has a bottom-padding: 50px;
     screenHeight = window.screen.height;
 };
 
