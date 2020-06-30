@@ -42,8 +42,8 @@ start.onclick = function() {
         let difference = Date.now() - startTime;
         //calculate seconds
         secs = Math.floor(difference / 1000);
-        while(secs >= 11) { //set to 60 for production - when seconds reach xx or greater, then reset back to zero for a new minute - set at 11 for quick testing
-         secs = secs - 11; //set to 60 for production
+        while(secs >= 10) { //set to 60 for production - when seconds reach xx or greater, then reset back to zero for a new minute - set at 11 for quick testing
+         secs = secs - 10; //set to 60 for production - This takes secs to 0 instead of 1
         }
         // console.log(secs);
         secsElapsed.innerHTML = secs;
