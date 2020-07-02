@@ -22,15 +22,22 @@ let secs = 0;
 let mins = 0;
 let hours = 0;
 
+let savedTime;
+
 start.onclick = function() {
     let startTime = Date.now();
+    let difference;
     //milliseconds calculation
     let mills = setInterval( function(){
-        let difference = Date.now() - startTime;
+        if(!savedTime) {
+            difference = Date.now() - startTime;
+        } else {
+            difference = (Date.now() - startTime) + savedTime;
+        }
         let mill = (difference / 1000);
         let remainer = (mill % 1).toFixed(2);
         decPart = (remainer+"").split(".")[1];
-        // console.log(decPart)
+        console.log(decPart)
         millsElapsed.innerHTML = decPart;
     }, 10);
     
@@ -39,7 +46,7 @@ start.onclick = function() {
     //Seconds calculation
     let seconds = setInterval( function(){
         // Set difference = difference between epoch time and current time, every second
-        let difference = Date.now() - startTime;
+        difference = Date.now() - startTime;
         //calculate seconds
         secs = Math.floor(difference / 1000);
         while(secs >= 10) { //set to 60 for production - when seconds reach xx or greater, then reset back to zero for a new minute - set at 11 for quick testing
@@ -67,6 +74,7 @@ start.onclick = function() {
     function stopAll() {
         clearTimeout(mills);
         clearTimeout(seconds);
+        savedTime = difference;
         start.disabled = false; //re-enable start button once either restart or stop is clicked
     }
 
