@@ -14,7 +14,7 @@ let minsElapsed = document.getElementById('minsElapsed')
 let secsElapsed = document.getElementById('secsElapsed')
 let millsElapsed = document.getElementById('millsElapsed')
 
-let running = 0;
+let millCalls = 0;
 let secCalls = 0;
 let minCalls = 0;
 let decPart = 0;
@@ -26,42 +26,39 @@ let savedTime;
 
 start.onclick = function() {
     let startTime = Date.now();
-    let difference;
+    let millDifference;
     //milliseconds calculation
-    let mills = setInterval( function(){
+    let time = setInterval( function(){
         if(!savedTime) {
-            difference = Date.now() - startTime;
+            millDifference = Date.now() - startTime;
         } else {
-            difference = (Date.now() - startTime) + savedTime;
+            millDifference = (Date.now() - startTime) + savedTime;
         }
-        let mill = (difference / 1000);
+        let mill = (millDifference / 1000);
         let remainer = (mill % 1).toFixed(2);
         decPart = (remainer+"").split(".")[1];
         console.log(decPart)
         millsElapsed.innerHTML = decPart;
-    }, 10);
-    
-    start.disabled = true; //disable start button so it cannot be spammed
 
-    //Seconds calculation
-    let seconds = setInterval( function(){
-        // Set difference = difference between epoch time and current time, every second
-        difference = Date.now() - startTime;
         //calculate seconds
-        secs = Math.floor(difference / 1000);
-        while(secs >= 10) { //set to 60 for production - when seconds reach xx or greater, then reset back to zero for a new minute - set at 11 for quick testing
-         secs = secs - 10; //set to 60 for production - This takes secs to 0 instead of 1
+        millCalls++;
+        if(millCalls >= 100){ //setInterval runs 100 times before this block executes
+            secs = secs + 1;
+            millCalls = millCalls - 100;
+            secCalls++;
         }
         // console.log(secs);
         secsElapsed.innerHTML = secs;
+
         //calculate minutes
-        secCalls++;
-        if(secCalls > 10){ //set to 60 for production - when minutes reach xx or greater, then reset back to zero for a new minute - set at 10 for quick testing
+        if(secCalls >= 60){
             mins = mins + 1;
-            secCalls = secCalls - 11; //set to 60 for production
+            secs = secs - 60;
+            secCalls = secCalls - 60;
             minCalls++;
         }
         minsElapsed.innerHTML = mins;
+
         //calculate hours
         if(minCalls >= 10){ //set to 60 for production - when minutes reach xx or greater, then reset back to zero for a new minute - set at 10 for quick testin
             hours = hours + 1;
@@ -69,17 +66,19 @@ start.onclick = function() {
         }
         hoursElapsed.innerHTML = hours;
 
-    }, 1000);
+    }, 10);
+    
+    start.disabled = true; //disable start button so it cannot be spammed
 
     function stopAll() {
-        clearTimeout(mills);
-        clearTimeout(seconds);
-        savedTime = difference;
+        clearTimeout(time);
+        savedTime = millDifference;
         start.disabled = false; //re-enable start button once either restart or stop is clicked
     }
 
     end.onclick = function stopWatch() {
         stopAll();
+        millCalls = millCalls - 1;
         secCalls = secCalls - 1;
         minCalls = minCalls - 1;
         }
@@ -90,6 +89,10 @@ start.onclick = function() {
         secs = secs * 0;
         mins = mins * 0;
         hours = hours * 0;
+        savedTime = undefined;
+        millCalls = millCalls * 0;
+        secCalls = secCalls * 0;
+        minCalls = minCalls * 0;
         millsElapsed.innerHTML = decPart;
         secsElapsed.innerHTML = secs;
         minsElapsed.innerHTML = mins;
