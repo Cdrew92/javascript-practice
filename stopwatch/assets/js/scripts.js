@@ -29,13 +29,15 @@ start.onclick = function() {
     let millDifference;
     //milliseconds calculation
     let time = setInterval( function(){
+        let mill;
+        let remainer;
         if(!savedTime) {
             millDifference = Date.now() - startTime;
         } else {
             millDifference = (Date.now() - startTime) + savedTime;
         }
-        let mill = (millDifference / 1000);
-        let remainer = (mill % 1).toFixed(2);
+        mill = (millDifference / 1000);
+        remainer = (mill % 1).toFixed(2);
         decPart = (remainer+"").split(".")[1];
         millsElapsed.innerHTML = decPart;
 
@@ -85,10 +87,10 @@ start.onclick = function() {
         secs = secs * 0;
         mins = mins * 0;
         hours = hours * 0;
-        savedTime = undefined;
         millCalls = millCalls * 0;
         secCalls = secCalls * 0;
         minCalls = minCalls * 0;
+        savedTime = undefined;
         millsElapsed.innerHTML = decPart;
         secsElapsed.innerHTML = secs;
         minsElapsed.innerHTML = mins;
