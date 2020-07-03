@@ -60,6 +60,7 @@ start.onclick = function() {
         //calculate hours
         if(minCalls >= 10){ //set to 60 for production - when minutes reach xx or greater, then reset back to zero for a new minute - set at 10 for quick testin
             hours = hours + 1;
+            mins = mins - 10 // set to 60 for production
             minCalls = minCalls - 10; //set to 60 for production
         }
         hoursElapsed.innerHTML = hours;
