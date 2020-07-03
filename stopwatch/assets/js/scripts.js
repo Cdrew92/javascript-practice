@@ -78,8 +78,6 @@ start.onclick = function() {
     end.onclick = function stopWatch() {
         stopAll();
         millCalls = millCalls - 1;
-        secCalls = secCalls - 1;
-        minCalls = minCalls - 1;
         }
 
     reset.onclick = function resetWatch() { 
