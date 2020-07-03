@@ -37,7 +37,6 @@ start.onclick = function() {
         let mill = (millDifference / 1000);
         let remainer = (mill % 1).toFixed(2);
         decPart = (remainer+"").split(".")[1];
-        console.log(decPart)
         millsElapsed.innerHTML = decPart;
 
         //calculate seconds
@@ -47,7 +46,6 @@ start.onclick = function() {
             millCalls = millCalls - 100;
             secCalls++;
         }
-        // console.log(secs);
         secsElapsed.innerHTML = secs;
 
         //calculate minutes
