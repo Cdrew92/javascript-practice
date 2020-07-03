@@ -43,7 +43,7 @@ start.onclick = function() {
         millCalls++;
         if(millCalls >= 100){ //setInterval runs 100 times before this block executes
             secs = secs + 1;
-            millCalls = millCalls - 100;
+            millCalls = millCalls * 0;
             secCalls++;
         }
         secsElapsed.innerHTML = secs;
@@ -51,8 +51,8 @@ start.onclick = function() {
         //calculate minutes
         if(secCalls >= 60){
             mins = mins + 1;
-            secs = secs - 60;
-            secCalls = secCalls - 60;
+            secs = secs - secs;
+            secCalls = secCalls * 0;
             minCalls++;
         }
         minsElapsed.innerHTML = mins;
@@ -60,8 +60,8 @@ start.onclick = function() {
         //calculate hours
         if(minCalls >= 10){ //set to 60 for production - when minutes reach xx or greater, then reset back to zero for a new minute - set at 10 for quick testin
             hours = hours + 1;
-            mins = mins - 10 // set to 60 for production
-            minCalls = minCalls - 10; //set to 60 for production
+            mins = mins - mins 
+            minCalls = minCalls * 0; 
         }
         hoursElapsed.innerHTML = hours;
 
