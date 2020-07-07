@@ -1,0 +1,30 @@
+.price-calc {
+    position: relative;
+  }
+  
+  .price-calc > i {
+    position: absolute;
+    display: block;
+    transform: translate(0, -50%);
+    top: 43.5%;
+    pointer-events: none;
+    width: 25px;
+    text-align: center;
+      font-style: normal;
+  }
+  
+  .price-calc > input:first-of-type {
+    padding-left: 25px;
+      padding-right: 0;
+  }
+  
+  .price-right > i {
+    right: 0;
+  }
+  
+  .price-right > input {
+    padding-left: 0;
+    padding-right: 25px;
+    text-align: right;
+  }
+  
