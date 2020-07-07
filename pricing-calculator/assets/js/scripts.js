@@ -7,19 +7,6 @@
 // Always have dollar sign in price input
 // Output total price - check
 
-// let counter = document.getElementById('formControlRange');
-// let range = document.getElementById('range');
-// let price = document.getElementById('price');
-// let total = document.getElementById('total');
-
-// range.innerHTML = counter.value;
-
-// function update() {
-//     ranger.innerHTML = counter.value;
-//     total.innerHTML = counter.value * parseFloat(price.value);
-//     }
-
-
 let counterValue = document.getElementById('formControlRange').value;
 let range = document.getElementById('range');
 let price = document.getElementById('price');
@@ -37,8 +24,24 @@ function update() {
         }
     }
 
-price.addEventListener( "keydown", event => {
-    // if (event.isComposing || event.keyCode > 47 && event.keyCode < 58) {
-    //     console.log("success")
-    //   }
-});
+// Restricts input for the given textbox to the given inputFilter function.
+function setInputFilter(textbox, inputFilter) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+      textbox.addEventListener(event, function() {
+        if (inputFilter(this.value)) {
+          this.oldValue = this.value;
+          this.oldSelectionStart = this.selectionStart; //prevents cursor from moving back in front of string
+          this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) { // if the if statement above evaluates false, which means the characters being input are not numeric as defined in setInputFilter(), else if checks to see if textbox has oldValue as a property and replaces current value with oldValue
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else { //catch all just in case unexpected character is input
+            this.value = "";
+        }
+      });
+    });
+  }
+
+  setInputFilter(price, function(value) {
+    return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+  });
