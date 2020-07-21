@@ -47,12 +47,9 @@ let value = allButtons.forEach(element => {
                 operator = "";
             }
         } else if (currentNum != "") {
-            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') { //check for negative value before first number in equation
-                if (element.value == '-') {
-                    oldNum = oldNum + element.value;
-                    input.innerHTML = oldNum;
-                    console.log("flag 1");
-                }
+            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*') {
+                operator = element.value;
+                input.innerHTML = result;
             } else {
                 currentNum = currentNum + element.value;
                 input.innerHTML = currentNum; //delays result in window until another operator is pressed
