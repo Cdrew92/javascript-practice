@@ -13,36 +13,35 @@ let value = allButtons.forEach(element => {
                 if (element.value == '-') {
                     oldNum = oldNum + element.value;
                     input.innerHTML = oldNum;
-                    console.log("flag 1");
                 }
             } else {
                 oldNum = oldNum + element.value; // only if oldNum == "" and input is not operator
                 input.innerHTML = oldNum;
-                console.log("flag 2");
-                console.log('Old Num = ' + oldNum)
+                console.log("flag 1")
             }
         } else if (oldNum != "" && currentNum == "") { //evaluates if oldNum is not undefined
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*') {
                 operator = element.value;
                 input.innerHTML = result;
+                console.log("flag 2")
             } 
             else if (operator == "") { //evaluates if oldNum is undefined && operator is undefined
                 oldNum = oldNum + element.value;
-                console.log("flag 3");
                 input.innerHTML = oldNum;
+                console.log("flag 3")
             } 
             else if (result == "") { //evaluates if oldNum is undefined && result is undefined
                 currentNum = currentNum + element.value;
                 input.innerHTML = currentNum; //delays result in window until another operator is pressed
                 result = eval(oldNum + operator + currentNum)
-                console.log("flag 4");
+                console.log("flag 4")
             } 
             else if (operator != ""){
                 oldNum = result;
-                console.log("flag 5");
                 currentNum = ""; //allowed correct math, but only with single digits
                 currentNum = currentNum + element.value;
-                result = eval(oldNum + operator + currentNum);                          
+                result = eval(oldNum + operator + currentNum);
+                console.log("flag 5")                          
                 input.innerHTML = currentNum;
                 operator = "";
             }
@@ -50,10 +49,18 @@ let value = allButtons.forEach(element => {
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*') {
                 operator = element.value;
                 input.innerHTML = result;
+            } else if (operator == "") { //evaluates if oldNum is undefined && operator is undefined
+                currentNum = currentNum + element.value;
+                input.innerHTML = currentNum;
+                console.log("flag 6")
             } else {
                 currentNum = currentNum + element.value;
                 input.innerHTML = currentNum; //delays result in window until another operator is pressed
                 result = eval(oldNum + operator + currentNum)
+                console.log("flag 7")
+                oldNum = result;
+                currentNum = "";
+                operator = "";
             }
         } else {
             oldNum = "";
@@ -61,9 +68,12 @@ let value = allButtons.forEach(element => {
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*') { 
                 operator = element.value;
                 input.innerHTML = result;
+                console.log("flag 8")
             } else {
                 oldNum = result;
                 input.innerHTML = oldNum;
+                operator = "";
+                console.log("flag 9")
             }
         }
     }
