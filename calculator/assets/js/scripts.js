@@ -3,7 +3,7 @@ let input = document.getElementById("input");
 let num1 = "";
 let operator = "";
 let num2 = "";
-let lengthCheck = "";
+let checkForOperator = "";
 let result = "";
 
 let value = allButtons.forEach(element => {
@@ -16,7 +16,7 @@ let value = allButtons.forEach(element => {
                     input.innerHTML = num1;
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
                     operator = element.value;
-                    lengthCheck = 0;
+                    checkForOperator = 0;
                 }
             } else {
                 num1 = num1 + element.value;
@@ -25,42 +25,46 @@ let value = allButtons.forEach(element => {
         } else if (operator == "") { //only continue if no operator is selected - Keep appending to num1 string
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') {
                 operator = element.value;
-                lengthCheck = 0;
+                checkForOperator = 0;
             } else {
                 num1 = num1 + element.value;
                 input.innerHTML = num1;
             } //END
         } 
         //check if num1, and operator are defined and if so then switch to writing num2
-        else if (num1 && operator && lengthCheck == 0) {
+        else if (num1 && operator) {
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') { //check for negative value before first number in equation
                 if (element.value == '-') {
                     num2 = num2 + element.value;
                     input.innerHTML = num2;
-                    lengthCheck = 1;
+                    checkForOperator = 1;
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
-                    operator = element.value;
-                    lengthCheck = 0;
+                    if (operator) {
+
+                    } else {
+                        operator = element.value;
+                        checkForOperator = 0;
+                    }
                 }
             } else {
                 num2 = num2 + element.value;
                 input.innerHTML = num2;
-                lengthCheck = 1;
+                checkForOperator = 1;
             }
             } else if (operator == "") { //only continue if no operator is selected - Keep appending to num2 string
                 if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') {
                     operator = element.value;
-                    lengthCheck = 0;
+                    checkForOperator = 0;
                 } 
             } else if (operator != "") {
                 num2 = num2 + element.value;
-                lengthCheck = 1;
+                checkForOperator = 1;
         }//END
 
-        // num1, operator, num2 input
+        // num1, operator, num2 input are defined - Calculate result
         if (num1 && num2 && operator) {
-            if (lengthCheck >= 1) {
-                lengthCheck = 0;
+            if (checkForOperator >= 1) { // only calculate result if finished adding to num2 string
+                checkForOperator = 0;
             } else {
             result = eval(num1 + operator + num2);
             input.innerHTML = result;
@@ -68,7 +72,7 @@ let value = allButtons.forEach(element => {
             input.innerHTML = num1;
             num2 = "";
             result = "";
-            lengthCheck = 0;
+            checkForOperator = 0;
             }
         }
         //num1, operator, num2, then operator clicked (result should appear) should go start back at num1 input
