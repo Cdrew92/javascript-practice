@@ -65,9 +65,10 @@ let value = allButtons.forEach(element => {
             result = eval(num1 + operator + num2);
             input.innerHTML = result;
             num1 = result;
-            input.innerHTML = num1 + element.value;
+            input.innerHTML = num1;
             num2 = "";
             result = "";
+            lengthCheck = 0;
             }
         }
         //num1, operator, num2, then operator clicked (result should appear) should go start back at num1 input
