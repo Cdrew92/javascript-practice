@@ -56,21 +56,9 @@ let value = allButtons.forEach(element => {
                     checkForOperator = 1;
                     console.log('negative operater added to num2');
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
-                    if (operator && result) { // ISSUE: Calculator performs calculation with correct operator once, then operator can only be changed by double clicking 
-                        operator = element.value;
-                        checkForOperator = 0;
-                        console.log('operator Set after num2');
-                    } else {
-                        checkForOperator = 0;
-                        if (result == "") {
-                            operator = operator;
-                            console.log('operator = operator')
-                        } else {
-                            operator = element.value;
-                            console.log('operator = element.value')
-                        }
-                        console.log('checkForOperator = 0');
-                    }
+                    checkForOperator = 0;
+                    operator = operator;
+                    console.log('operator = operator')
                 }
             } else {
                 num2 = num2 + element.value;
@@ -94,7 +82,6 @@ let value = allButtons.forEach(element => {
                 num2 = "";
                 checkForOperator = 0;
                 operator = element.value;
-                result = ""; // set result back to undefined so operator can be changed as desired
                 console.log("result calculated");
             }
         }
