@@ -22,6 +22,14 @@ let value = allButtons.forEach(element => {
     element.onclick = function changeContent() { 
         //allow for negative number and num1 input only if num1 has no value AND no operator has been selected
         // begin writing num1
+        if (element.value == "") { //clear function
+            num1 = "";
+            operator = "";
+            num2 = "";
+            result = "";
+            input.innerHTML = "";
+        }
+
         if (num1 == "" && operator == "") {
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') { //check for negative value before first number in equation
                 if (element.value == '-') {
