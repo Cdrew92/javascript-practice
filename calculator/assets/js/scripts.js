@@ -50,16 +50,20 @@ let value = allButtons.forEach(element => {
         //check if num1, and operator are defined and if so then switch to writing num2
         else if (num1 && operator) {
             if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') { //check for negative value before first number in equation
-                if (element.value == '-') {
-                    num2 = num2 + element.value;
-                    input.innerHTML = num2;
-                    checkForOperator = 1;
-                    console.log('negative operater added to num2');
+                    if (element.value == '-') {
+                        if (num2) {
+                            operator = operator;
+                        } else {
+                        num2 = num2 + element.value;
+                        input.innerHTML = num2;
+                        checkForOperator = 1;
+                        console.log('negative operater added to num2');
+                    }
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
-                    checkForOperator = 0;
-                    operator = operator;
-                    console.log('operator = operator')
-                }
+                        checkForOperator = 0;
+                        operator = operator;
+                        console.log('operator = operator')
+                    }
             } else {
                 num2 = num2 + element.value;
                 input.innerHTML = num2;
