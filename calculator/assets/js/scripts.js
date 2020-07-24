@@ -16,6 +16,7 @@ let operator = "";
 let num2 = "";
 let checkForOperator = "";
 let result = "";
+let negative = "";
 
 let value = allButtons.forEach(element => {
     element.onclick = function changeContent() { 
@@ -79,6 +80,12 @@ let value = allButtons.forEach(element => {
                 console.log('checkForOperator = 0 instead of calculating');
             } else {
                 result = "";
+                if (operator == "-" && num2.includes("-")) { //if double negative then remove negative from num2 and change operator to +
+                    num2 = num2.split('');
+                    num2 = num2.splice(1);
+                    console.log(num2);
+                    operator = "+";
+                }
                 result = eval(num1 + operator + num2);
                 input.innerHTML = result;
                 num1 = result;
