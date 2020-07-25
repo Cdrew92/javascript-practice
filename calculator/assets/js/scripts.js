@@ -35,6 +35,8 @@ let value = allButtons.forEach(element => {
                 if (element.value == '-') {
                     num1 = num1 + element.value;
                     input.innerHTML = num1;
+                } else if(element.value == "=") {
+                    operator = operator;
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
                     operator = element.value;
                     checkForOperator = 0;
@@ -46,10 +48,12 @@ let value = allButtons.forEach(element => {
                 console.log('add first number to num1');
             }
         } else if (operator == "" && num2 == "") { //only continue appending to num1 string if no operator is selected and num2 has not started
-            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') {
+            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*') {
                 operator = element.value;
                 checkForOperator = 0;
                 console.log("add operator after num1 & set checkForOperator = 0");
+            } else if(element.value == "=") {
+                operator = operator;
             } else {
                 num1 = num1 + element.value;
                 input.innerHTML = num1;
@@ -58,21 +62,23 @@ let value = allButtons.forEach(element => {
         } 
         //check if num1, and operator are defined and if so then switch to writing num2
         else if (num1 && operator) {
-            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=' || element.value == '') { //check for negative value before first number in equation
-                    if (element.value == '-') {
-                        if (num2) {
-                            operator = operator;
-                        } else {
+            if (element.value == '+' || element.value == '-' || element.value == '/' || element.value == '*' || element.value == '=') { //check for negative value before first number in equation
+                if (element.value == '-') {
+                    if (num2) {
+                        operator = operator;
+                    } else {
                         num2 = num2 + element.value;
                         input.innerHTML = num2;
                         checkForOperator = 1;
                         console.log('negative operater added to num2');
                     }
+                } else if(element.value == "=") {
+                    operator = operator;
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
-                        checkForOperator = 0;
-                        operator = operator;
-                        console.log('operator = operator')
-                    }
+                    checkForOperator = 0;
+                    operator = operator;
+                    console.log('operator = operator')
+                }
             } else {
                 num2 = num2 + element.value;
                 input.innerHTML = num2;
@@ -82,7 +88,7 @@ let value = allButtons.forEach(element => {
         } //END writing num2
 
         // num1, operator, num2 input are defined - Calculate result unless checkForOperator = 0
-        if (num1 && num2 && operator) {
+        if (num1 && num2 && operator || num1 && num2 && element.value == "=") {
             if (checkForOperator >= 1) { // only calculate result if finished adding to num2 string
                 checkForOperator = 0;
                 console.log('checkForOperator = 0 instead of calculating');
@@ -100,7 +106,12 @@ let value = allButtons.forEach(element => {
                 input.innerHTML = num1;
                 num2 = "";
                 checkForOperator = 0;
-                operator = element.value;
+                if (operator == "=") {
+                    operator = "";
+                } else {
+                    operator = element.value;
+                    console.log(operator);
+                }
                 console.log("result calculated");
             }
         }
