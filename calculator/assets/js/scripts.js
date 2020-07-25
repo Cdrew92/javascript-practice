@@ -75,9 +75,13 @@ let value = allButtons.forEach(element => {
                 } else if(element.value == "=") {
                     operator = operator;
                 } else if (element.value == '+' || element.value == '/' || element.value == '*') {
-                    checkForOperator = 0;
-                    operator = operator;
-                    console.log('operator = operator')
+                    if (operator == "=") {
+                        operator = element.value;
+                    } else {
+                        checkForOperator = 0;
+                        operator = operator;
+                        console.log('operator = operator')
+                    }
                 }
             } else {
                 num2 = num2 + element.value;
@@ -106,14 +110,14 @@ let value = allButtons.forEach(element => {
                 input.innerHTML = num1;
                 num2 = "";
                 checkForOperator = 0;
-                if (operator == "=") {
-                    operator = "";
-                } else {
-                    operator = element.value;
-                    console.log(operator);
-                }
+                operator = element.value;
+                console.log(operator);
                 console.log("result calculated");
             }
+        }
+        if (operator == "=") {
+            operator = "";
+            console.log("operator ==");
         }
     }
 });
