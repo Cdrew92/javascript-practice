@@ -100,6 +100,10 @@ let value = allButtons.forEach(element => {
             if (checkForOperator >= 1) { // only calculate result if finished adding to num2 string
                 checkForOperator = 0;
                 console.log('checkForOperator = 0 instead of calculating');
+            } else if (num1 == "0" && operator == "/" && num2 == "0" || operator == "/" && num2 == "0") {
+                num1 = "";
+                num2 = "";
+                input.innerHTML = "Cannot divide by zero";
             } else {
                 result = "";
                 if (operator == "-" && num2.includes("-")) { //if double negative then remove negative from num2 and change operator to +
