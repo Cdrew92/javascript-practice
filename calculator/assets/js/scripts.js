@@ -43,6 +43,7 @@ let value = allButtons.forEach(element => {
                     console.log('add operator to num1')
                 }
             } else if (num1 == "0") {
+                input.innerHTML = "";
                 num1 = element.value;
                 input.innerHTML = num1;
             } else {
@@ -108,9 +109,14 @@ let value = allButtons.forEach(element => {
                     operator = "+";
                 }
                 result = eval(num1 + operator + num2);
-                input.innerHTML = result;
-                num1 = result;
-                input.innerHTML = num1;
+                if (result == "0") {
+                    num1 = "0";
+                    input.innerHTML = "0";
+                } else {
+                    input.innerHTML = result;
+                    num1 = result;
+                    input.innerHTML = num1;
+                }
                 num2 = "";
                 checkForOperator = 0;
                 operator = element.value;
