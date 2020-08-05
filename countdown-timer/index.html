@@ -71,7 +71,7 @@ let x = setInterval(function() {
   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
 
-  // If the count down is over, write some text 
+  // If the count down is over, write some text & move to next service. Reset service count if serviceNum exceeds number of services
   if (seconds <= 0) {
        document.getElementById("demo").innerHTML = "0d " +  "0h " + "0m " + "0s";
        if (serviceNum < services.service.length - 1) {
