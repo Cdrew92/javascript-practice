@@ -51,7 +51,7 @@ start.onclick = function() {
         secsElapsed.innerHTML = secs;
 
         //calculate minutes
-        if(secCalls >= 10){ //set to 60 for production - when minutes reach xx or greater, then reset seconds back to zero for a new minute - set at 10 for quick testing
+        if(secCalls >= 60){ //set to 60 for production - when minutes reach xx or greater, then reset seconds back to zero for a new minute - set at 10 for quick testing
             mins = mins + 1;
             secs = secs - secs;
             secCalls = secCalls * 0;
@@ -60,7 +60,7 @@ start.onclick = function() {
         minsElapsed.innerHTML = mins;
 
         //calculate hours
-        if(minCalls >= 10){ //set to 60 for production - when minutes reach xx or greater, then reset minutes back to zero for a new minute - set at 10 for quick testing
+        if(minCalls >= 60){ //set to 60 for production - when minutes reach xx or greater, then reset minutes back to zero for a new minute - set at 10 for quick testing
             hours = hours + 1;
             mins = mins - mins 
             minCalls = minCalls * 0; 
